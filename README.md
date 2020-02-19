@@ -22,7 +22,11 @@
 %r14 | %r14d | %r14w | %r14b
 %r15 | %r15d | %r15w | %r15b
 
+
+
 ## Operand Specifiers
+
+###### Imm refers to a constant value, E<sub>x</sub> refers to a register, R[E<sub>x</sub>] refers to value stored in E<sub>x</sub>, M[x] refers to value stored at memory address
 
 Type | From | Operand Value | Name
 -----|------|---------------|-----
@@ -31,6 +35,8 @@ Register | E<sub>2</sub> | R[E<sub>a</sub>]| Register
 Memory | Imm | M[Imm]| Absolute
 Memory | (E<sub>2</sub>) | M[R[E<sub>b</sub>]] | Absolute
 Memory | Imm[E<sub>b</sub>, E<sub>i</sub> s] | M[Imm + R[E<sub>b</sub>] + (R[E<sub>i</sub>] x s) | Scaled Index
+
+
 
 ## Data Movement
 
@@ -47,7 +53,39 @@ Two suffixes |
 mov *s, d* | Move byte to word (zero extended)
 push *s* | Move byte to word (zero extended)
 No suffix |
-cwtl | Convert word in *%ax*to doubleword in *%eax* (sign-extended)
+cwtl | Convert word in *%ax* to doubleword in *%eax* (sign-extended)
 cltq | Convert doubleword in *%eax* to quadword in *%rax* (sign-extended)
 cqto | Convert quadword in *%rax* to octoword in *%rdx:%rax*
+
+
+## Arithmetic Operations
+
+### Unary Operations
+
+Instruction | Description
+------------|------------
+inc *d* | Increment by 1
+dec *d* | Decrement by 1
+neg *d* | Arithmetic negation
+not *d* | Bitwise complement
+
+### Binary Operations
+
+Instruction | Description
+------------|------------
+leaq *s, d* | Load effective address of source into destination
+add *s, d* | Add source to destination
+sub *s, d* | Subtract source from destination
+imul *s, d* | Multiply source by destination
+xor *s, d* | Bitwise XOR (exclusive or) destination by source
+or *s, d* | Bitwise OR destination by source
+and *s, d* | Bitwise AND destination by source
+
+### Shift Operations
+
+Instruction | Description
+------------|------------
+sal/sdl *k, d* | Left shift destination by *k* bits
+sar *k, d* | Arithmetic right shift by *k* bits
+shr *k, d* | Logical right shift by *k* bits
 
