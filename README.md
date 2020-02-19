@@ -26,7 +26,8 @@
 
 ## Operand Specifiers
 
-###### Imm refers to a constant value, E<sub>x</sub> refers to a register, R[E<sub>x</sub>] refers to value stored in E<sub>x</sub>, M[x] refers to value stored at memory address
+###### Imm = constant value, E<sub>x</sub> = register, 
+###### R[E<sub>x</sub>] = value stored in E<sub>x</sub>, M[x] = value stored at memory address
 
 Type | From | Operand Value | Name
 -----|------|---------------|-----
