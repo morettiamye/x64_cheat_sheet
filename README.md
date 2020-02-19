@@ -29,4 +29,25 @@ Type | From | Operand Value | Name
 Immediate | $Imm | Imm | Immediate
 Register | E<sub>2</sub> | R[E<sub>a</sub>]| Register
 Memory | Imm | M[Imm]| Absolute
-Memory | (E<sub>2</sub> | M[R[E<sub>B</sub>]] | Absolute
+Memory | (E<sub>2</sub>) | M[R[E<sub>b</sub>]] | Absolute
+Memory | Imm[E<sub>b</sub>, E<sub>i</sub> s] | M[Imm + R[E<sub>b</sub>] + (R[E<sub>i</sub>] x s) | Scaled Index
+
+## Data Movement
+
+###### b = byte, w = word, l = doubleword (4 byte integer), q = quadword (8 byte integer)
+###### s = source, d = destination
+
+Instruction | Description
+------------|------------
+One suffix |    
+mov  *s, d* | Move source to destination
+push *s* | Move source to stack
+pop *d* | Pop top of stack to destination
+Two suffixes | 
+mov *s, d* | Move byte to word (zero extended)
+push *s* | Move byte to word (zero extended)
+No suffix |
+cwtl | Convert word in *%ax*to doubleword in *%eax* (sign-extended)
+cltq | Convert doubleword in *%eax* to quadword in *%rax* (sign-extended)
+cqto | Convert quadword in *%rax* to octoword in *%rdx:%rax*
+
