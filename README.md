@@ -90,3 +90,13 @@ sal/sdl *k, d* | Left shift destination by *k* bits
 sar *k, d* | Arithmetic right shift by *k* bits
 shr *k, d* | Logical right shift by *k* bits
 
+### Special Arithmetic Operations
+
+Instruction | Description
+------------|------------
+imulq *s* | Signed full multiply of *%rax* by *s*, result stored in  *%rdx*:*%rax*
+mulq *s* | Unsigned full multiply of *%rax* by *s*, result stored in  *%rdx*:*%rax*
+idivq *s* | Signed divide *%rdx*:*%rax* by *s*, quotient stored in *%rax*, remainder stored in *rdx*
+divq *s* | Unsigned divide *%rdx*:*%rax* by *s*, quotient stored in *%rax*, remainder stored in *rdx*
+
+
