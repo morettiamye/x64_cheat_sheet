@@ -98,16 +98,17 @@ idivq *s* | Signed divide *%rdx*:*%rax* by *s*, quotient stored in *%rax*, remai
 divq *s* | Unsigned divide *%rdx*:*%rax* by *s*, quotient stored in *%rax*, remainder stored in *rdx*
 
 
-
 ## Comparisons and Tests
+
 Instruction | Description
 ------------|------------
 cmp *s<sub>2</sub>*, *s<sub>1</sub>* | Set condition codes according to *s<sub>1</sub>* - *s<sub>2</sub>*
 test *s<sub>2</sub>*, *s<sub>1</sub>* | Set condition codes according to *s<sub>1</sub>* - *s<sub>2</sub>*
 
+## Condition Codes
 
+### Conditional Set Instructions
 
-## Conditional Set Instructions
 Instruction | Description | Condition Code
 ------------|-------------|---------------
 sete/setz *D* | Set if equal/zero | **ZF**
@@ -124,4 +125,49 @@ setb/setnae *D* | Set if below (unsigned) | **CF**
 setbe/setna *D* | Set if below or equal (unsigned) | **CF|ZF**
 
 
-## Jump Instructions
+### Jump Instructions
+
+Instruction | Description | Condition Code
+------------|-------------|---------------
+jmp | Jump to label | 
+jmp *operand* | Jump to specified location
+je/jz | Jump if equal/zero | **ZF**
+jne/jnz | Jump if not equal/zero | **~ZF**
+js | Jump if negative | **SF**
+jns | Jump if nonnegative | **~SF**
+jg/jnle | Jump if greater (signed) | **~(SF^0F)&~ZF**
+jge/jnl | Jump if greater or equal (signed) | **~(SF^0F)**
+jl/jnge | Jump if less (signed) | **SF^0F**
+jle/jng | Jump if less or equal | **(SF^0F)|ZF**
+ja/jnbe | Jump if above (unsigned) | **~CF&~ZF**
+jae/jnb | Jump if above or equal (unsigned) | **~CF**
+jb/jnae | Jump if below (unsigned) | **CF**
+jbe/jna | Jump if below or equal (unsigned) | **CF|ZF**
+
+
+### Conditional Move Instructions
+
+Instruction | Description | Condition Code
+------------|-------------|---------------
+cmove/cmovz *S, D* | Move if equal/zero | **ZF**
+cmovne/cmovnz *S, D* | Move if not equal/nonzero | **~ZF**
+cmovs *S, D* | Move if negative | **SF**
+cmovns *S, D* | Move if nonnegative | **~SF**
+cmovg/cmovnle *S, D* | Move if greater (signed) | **~(SF^0F)&~ZF**
+cmovge/cmovnl *S, D* | Move if greater or equal (signed) | **~(SF^0F)**
+cmovl/cmovnge *S, D* | Move if less (signed) | **SF^0F**
+cmovle/cmovng *S, D* | Move if less or equal | **(SF^0F)|ZF**
+cmova/cmovnbe *S, D* | Move if above (unsigned) | **~CF&~ZF**
+cmovae/cmovnb *S, D* | Move if above or equal (unsigned) | **~CF**
+cmovb/cmovnae *S, D* | Move if below (unsigned) | **CF**
+cmovbe/cmovna  *S, D* | Move if below or equal (unsigned) | **CF|ZF**  
+
+
+### Procedure Call Instructions
+
+Instruction | Description 
+------------|-------------
+call *label* | Push return address and jump to label
+call *operand* | Push return address and jump to specified location
+leave | Set **%rsp** to **%rbp**, then pop top of stack to **%rbp**
+ret | Pop return address from stack and jump there
