@@ -122,7 +122,7 @@ setle/setng *D* | Set if less or equal | **(SF^0F)|ZF**
 seta/setnbe *D* | Set if above (unsigned) | **~CF&~ZF**
 setae/setnb *D* | Set if above or equal (unsigned) | **~CF**
 setb/setnae *D* | Set if below (unsigned) | **CF**
-setbe/setna *D* | Set if below or equal (unsigned) | **CF|ZF**
+setbe/setna *D* | Set if below or equal (unsigned) | **CF** or **ZF**
 
 
 ### Jump Instructions
@@ -142,7 +142,7 @@ jle/jng | Jump if less or equal | **(SF^0F)|ZF**
 ja/jnbe | Jump if above (unsigned) | **~CF&~ZF**
 jae/jnb | Jump if above or equal (unsigned) | **~CF**
 jb/jnae | Jump if below (unsigned) | **CF**
-jbe/jna | Jump if below or equal (unsigned) | **CF|ZF**
+jbe/jna | Jump if below or equal (unsigned) | **CF** or **ZF**
 
 
 ### Conditional Move Instructions
@@ -160,7 +160,7 @@ cmovle/cmovng *S, D* | Move if less or equal | **(SF^0F)|ZF**
 cmova/cmovnbe *S, D* | Move if above (unsigned) | **~CF&~ZF**
 cmovae/cmovnb *S, D* | Move if above or equal (unsigned) | **~CF**
 cmovb/cmovnae *S, D* | Move if below (unsigned) | **CF**
-cmovbe/cmovna  *S, D* | Move if below or equal (unsigned) | **CF|ZF**  
+cmovbe/cmovna  *S, D* | Move if below or equal (unsigned) | **CF** or **ZF**  
 
 
 ### Procedure Call Instructions
