@@ -23,7 +23,6 @@
 %r15 | %r15d | %r15w | %r15b
 
 
-
 ## Operand Specifiers
 
 ###### Imm = constant value, E<sub>x</sub> = register, 
@@ -36,7 +35,6 @@ Register | E<sub>2</sub> | R[E<sub>a</sub>]| Register
 Memory | Imm | M[Imm]| Absolute
 Memory | (E<sub>2</sub>) | M[R[E<sub>b</sub>]] | Absolute
 Memory | Imm[E<sub>b</sub>, E<sub>i</sub> s] | M[Imm + R[E<sub>b</sub>] + (R[E<sub>i</sub>] x s) | Scaled Index
-
 
 
 ## Data Movement
@@ -100,3 +98,30 @@ idivq *s* | Signed divide *%rdx*:*%rax* by *s*, quotient stored in *%rax*, remai
 divq *s* | Unsigned divide *%rdx*:*%rax* by *s*, quotient stored in *%rax*, remainder stored in *rdx*
 
 
+
+## Comparisons and Tests
+Instruction | Description
+------------|------------
+cmp *s<sub>2</sub>*, *s<sub>1</sub>* | Set condition codes according to *s<sub>1</sub>* - *s<sub>2</sub>*
+test *s<sub>2</sub>*, *s<sub>1</sub>* | Set condition codes according to *s<sub>1</sub>* - *s<sub>2</sub>*
+
+
+
+## Conditional Set Instructions
+Instruction | Description | Condition Code
+------------|-------------|---------------
+sete/setz *D* | Set if equal/zero | **ZF**
+setne/setnz *D* | Set if not equal/nonzero | **~ZF**
+sets *D* | Set if negative | **SF**
+setns *D* | Set if nonnegative | **~SF**
+setg/setnle *D* | Set if greater (signed) | **~(SF^0F)&~ZF**
+setge/setnl *D* | Set if greater or equal (signed) | **~(SF^0F)**
+setl/setnge *D* | Set if less (signed) | **SF^0F**
+setle/setng *D* | Set if less or equal | **(SF^0F)|ZF**
+seta/setnbe *D* | Set if above (unsigned) | **~CF&~ZF**
+setae/setnb *D* | Set if above or equal (unsigned) | **~CF**
+setb/setnae *D* | Set if below (unsigned) | **CF**
+setbe/setna *D* | Set if below or equal (unsigned) | **CF|ZF**
+
+
+## Jump Instructions
